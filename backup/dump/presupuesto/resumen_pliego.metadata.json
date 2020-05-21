@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"presupuesto.resumen_pliego"}],"uuid":"908f6a9e92464dbc9032c52ff1e257c9"}

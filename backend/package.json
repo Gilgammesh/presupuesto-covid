@@ -1,0 +1,35 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Api para consumir la información presupuestal de Covid en el Pliego Regional San Martín",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon --exec babel-node src/index.js",
+    "build": "ncp src dist && babel src -d dist",
+    "clean": "rimraf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "colors": "^1.4.0",
+    "convert-excel-to-json": "^1.6.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "figlet": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.15",
+    "ncp": "^2.0.0",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/node": "^7.8.7",
+    "nodemon": "^2.0.4"
+  }
+}
