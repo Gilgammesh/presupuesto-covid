@@ -8,7 +8,7 @@ const connection = async () => {
   const port = process.env.APP_DB_MONGO_PORT || 27017;
   const driver = process.env.APP_DB_MONGO_DRIV || "mongodb";
   const db = process.env.APP_DB_MONGO_NAME || "presupuesto"
-  const opt = "retryWrites=true&w=majority";
+  const opt = "authSource=admin&retryWrites=true&w=majority";
   const user = process.env.APP_DB_MONGO_USER || "";
   const pass = process.env.APP_DB_MONGO_PWD || "";
   const uri = `${driver}://${host}:${port}/${db}?${opt}`;
