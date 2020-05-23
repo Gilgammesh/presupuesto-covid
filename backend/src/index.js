@@ -26,7 +26,7 @@ app.use("*", cors());
 app.use(routes);
 
 // Variables generales de la API
-const port = 4000;
+const port = 3000;
 const appAutor = "GRSM";
 
 // Nos conectamos a la base de datos

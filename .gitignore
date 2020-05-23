@@ -1,5 +1,14 @@
+# BackEnd
 /backend/data
 /backend/node_modules
+/backend/dist
 
+# FrontEnd
 /frontend/node_modules
+/frontend/build
 
+# MacoOs
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store

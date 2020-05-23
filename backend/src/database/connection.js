@@ -4,13 +4,13 @@ import mongoose from "mongoose";
 // Creamos la conexión a la base de datos
 const connection = async () => {
   // Variables de la base de datos
-  const host = process.env.APP_DB_HOST;
-  const port = 27017;
-  const driver = process.env.APP_DB_DRIV;
-  const db = process.env.APP_DB_NAME
+  const host = process.env.APP_DB_MONGO_HOST || "localhost";
+  const port = process.env.APP_DB_MONGO_PORT || 27017;
+  const driver = process.env.APP_DB_MONGO_DRIV || "mongodb";
+  const db = process.env.APP_DB_MONGO_NAME || "presupuesto"
   const opt = "retryWrites=true&w=majority";
-  const user = process.env.APP_DB_USER;
-  const pass = process.env.APP_DB_PWD;
+  const user = process.env.APP_DB_MONGO_USER || "";
+  const pass = process.env.APP_DB_MONGO_PWD || "";
   const uri = `${driver}://${host}:${port}/${db}?${opt}`;
 
   // Opciones de conexion
