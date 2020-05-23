@@ -59,3 +59,9 @@ export const getDistribGenericaEjec = async (param1, param2) => {
   const response = await getRequest(url);
   return response;
 };
+
+export const processDataPresup = async () => {
+  const url = `http://localhost:4000/processDataPresup`;
+  const response = await getRequest(url);
+  return response;
+};

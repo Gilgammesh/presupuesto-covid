@@ -9,7 +9,6 @@ import dotenv from "dotenv";
 import "colors";
 import dbconnection from "./database/connection";
 import routes from "./routes/index";
-import processData from "./helpers/processData";
 
 // Habilitamos nuestras variables de entorno
 dotenv.config();
@@ -32,9 +31,6 @@ const appAutor = "GRSM";
 
 // Nos conectamos a la base de datos
 dbconnection();
-
-// Procesamos e insertamos la data
-//processData();
 
 // Creamos el servidor HTTP
 const httpServer = createServer(app);

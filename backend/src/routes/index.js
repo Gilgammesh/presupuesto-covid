@@ -10,6 +10,7 @@ import getEvolucionMensualEjec from "../controllers/getEvolucionMensualEjec";
 import getDistribTipoProdProyEjec from "../controllers/getDistribTipoProdProyEjec";
 import getDistribTipoGastoEjec from "../controllers/getDistribTipoGastoEjec";
 import getDistribGenericaEjec from "../controllers/getDistribGenericaEjec";
+import processDataPresup from "../controllers/processDataPresup";
 
 // Inicializamos router
 const router = Router();
@@ -30,5 +31,6 @@ router.get(
 );
 router.get("/getDistribTipoGastoEjec/:ano/:ejec", getDistribTipoGastoEjec);
 router.get("/getDistribGenericaEjec/:ano/:ejec", getDistribGenericaEjec);
+router.get("/processDataPresup", processDataPresup);
 
 export default router;
