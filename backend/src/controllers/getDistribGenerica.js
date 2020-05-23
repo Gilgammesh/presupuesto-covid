@@ -63,7 +63,13 @@ const getDistribTipoProdProy = async (request, response) => {
           mto_certificado: 1,
           mto_devengado: 1,
           ejecucion: {
-            $round: [{ $divide: ["$mto_devengado", "$mto_pim"] }, 2],
+            $cond: {
+              if: { $eq: ["$mto_pim", 0] },
+              then: 0.0,
+              else: {
+                $divide: ["$mto_devengado", "$mto_pim"],
+              },
+            },
           },
         },
       },

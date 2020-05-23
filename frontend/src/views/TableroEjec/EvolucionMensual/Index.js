@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useGlobal } from "reactn";
 import { Grid, Paper, Typography, Box } from "@material-ui/core";
 import { useStyles } from "./styles";
-import { getEvolucionMensual } from "../../../controllers/index.controllers";
+import { getEvolucionMensualEjec } from "../../../controllers/index.controllers";
 import LineChart from "../../../components/LineChart/Index";
 
 const Index = () => {
   const classes = useStyles();
 
   const [ano] = useGlobal("ano");
+  const [ejec] = useGlobal("ejec");
 
   const [data, setData] = useState(null);
   const [isFinish, setIsFinish] = useState(false);
@@ -17,11 +18,11 @@ const Index = () => {
   const month = date.getMonth();
 
   useEffect(() => {
-    getEvolucionMensual(ano).then((res) => {
+    getEvolucionMensualEjec(ano, ejec).then((res) => {
       setData(res);
       setIsFinish(true);
     });
-  }, [ano]);
+  }, [ano, ejec]);
 
   let data_ = null;
   if (isFinish) {
@@ -348,7 +349,7 @@ const Index = () => {
                 : null,
           },
         ],
-      },      
+      },
     ];
   }
 

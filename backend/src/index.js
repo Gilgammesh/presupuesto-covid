@@ -34,7 +34,7 @@ const appAutor = "GRSM";
 dbconnection();
 
 // Procesamos e insertamos la data
-processData();
+//processData();
 
 // Creamos el servidor HTTP
 const httpServer = createServer(app);

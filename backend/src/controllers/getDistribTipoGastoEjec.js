@@ -2,14 +2,15 @@
 import Presupuesto from "../database/models/presupuesto";
 
 // Obtenemos la tabla resumen de ejecución de las Unidades Ejecutoras
-const getTablaResumen = async (request, response) => {
-  var { ano } = request.params;
+const getDistribTipoProdProy = async (request, response) => {
+  var { ano, ejec } = request.params;
   try {
     const result = await Presupuesto.aggregate([
       {
         $match: {
           $and: [
             { ano_eje: parseInt(ano, 10) },
+            { sec_ejec: parseInt(ejec, 10) },
             {
               $or: [
                 {
@@ -33,10 +34,7 @@ const getTablaResumen = async (request, response) => {
       },
       {
         $group: {
-          _id: {
-            unidad_ejecutora: "$unidad_ejecutora",
-            sec_ejec: "$sec_ejec",
-          },
+          _id: "$categoria_gasto",
           mto_pim: { $sum: "$mto_pim" },
           mto_certificado: { $sum: "$mto_certificado" },
           mto_devengado: {
@@ -90,4 +88,4 @@ const getTablaResumen = async (request, response) => {
   }
 };
 
-export default getTablaResumen;
+export default getDistribTipoProdProy;

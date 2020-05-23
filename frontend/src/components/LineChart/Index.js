@@ -8,7 +8,7 @@ const Index = (params) => {
   return (
     <ResponsiveLine
       data={data}
-      margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+      margin={{ top: 50, right: 50, bottom: 50, left: 90 }}
       xScale={{ type: "point" }}
       yScale={{
         type: "linear",
@@ -32,9 +32,9 @@ const Index = (params) => {
         orient: "left",
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: 0,
-        legend: "",
-        legendOffset: -40,
+        tickRotation: -5,
+        legend: "Millones de Soles",
+        legendOffset: -75,
         legendPosition: "middle",
       }}
       colors={{ scheme: "set1" }}
@@ -68,14 +68,14 @@ const Index = (params) => {
       }}
       legends={[
         {
-          anchor: "bottom-right",
-          direction: "column",
+          anchor: "top",
+          direction: "row",
           justify: false,
-          translateX: 100,
-          translateY: 0,
+          translateX: 0,
+          translateY: -45,
           itemsSpacing: 0,
           itemDirection: "left-to-right",
-          itemWidth: 80,
+          itemWidth: 120,
           itemHeight: 20,
           itemOpacity: 0.75,
           symbolSize: 12,

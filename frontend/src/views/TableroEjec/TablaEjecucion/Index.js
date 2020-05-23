@@ -4,27 +4,29 @@ import { Grid, Paper, Typography, Box } from "@material-ui/core";
 import { FiberManualRecord } from "@material-ui/icons";
 import { green, red, amber } from "@material-ui/core/colors";
 import { useStyles } from "./styles";
-import { getTablaResumen } from "../../../controllers/index.controllers";
-import Table from "../../../components/Table/Index";
+import { getTablaResumenEjec } from "../../../controllers/index.controllers";
+import Table from "../../../components/Table_/Index";
 
 const Index = () => {
   const classes = useStyles();
 
   const [ano] = useGlobal("ano");
+  const [ejec] = useGlobal("ejec");
 
   const [data, setData] = useState(null);
   const [isFinish, setIsFinish] = useState(false);
 
   useEffect(() => {
-    getTablaResumen(ano).then((res) => {          
+    getTablaResumenEjec(ano, ejec).then((res) => {
       setData(res);
       setIsFinish(true);
     });
-  }, [ano]);
+  }, [ano, ejec]);
 
   const columns = [
     <span>RANKING</span>,
-    <span>UNIDAD EJECUTORA</span>,
+    <span>CLASIFICADOR</span>,
+    <span>FUENTE</span>,
     <span>
       PIM<br></br>(P)
     </span>,
@@ -46,11 +48,26 @@ const Index = () => {
     <span>SEMÁFORO</span>,
   ];
 
+  let ejecutora = "";
+  if (isFinish) {
+    const elems = data[0];
+    ejecutora = `UE${elems._id.unidad_ejecutora.substring(
+      0,
+      3
+    )} - ${elems._id.unidad_ejecutora.substring(
+      4,
+      elems._id.unidad_ejecutora.length
+    )} (${elems._id.sec_ejec})`;
+  }
+
   return (
     <Grid item xs={12}>
       <Paper className={classes.paper} elevation={3}>
         <Typography variant="h6" className={classes.title}>
           TABLA DE EJECUCIÓN
+        </Typography>
+        <Typography variant="h6" className={classes.title_}>
+          {ejecutora}
         </Typography>
         <Grid container className={classes.containerTable} spacing={2}>
           <Grid item xs={10}>

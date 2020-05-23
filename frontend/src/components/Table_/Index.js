@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Box } from "@material-ui/core";
 import { FiberManualRecord } from "@material-ui/icons";
 import { green, red, amber } from "@material-ui/core/colors";
@@ -53,21 +52,22 @@ const Index = (params) => {
     if (ele.mto_devengado) {
       devenT += ele.mto_devengado;
     }
+    const clasificador = `${ele._id.tipo_transaccion.split(".")[0]}.${
+      ele._id.generica.split(".")[0]
+    }. ${ele._id.subgenerica.split(".")[0]} ${
+      ele._id.subgenerica_det.split(".")[0]
+    }. ${ele._id.especifica.split(".")[0]} ${
+      ele._id.especifica_det.split(".")[0]
+    } - ${ele._id.especifica_det.split(".")[1]}`;
     return (
       <tr key={i} className={i % 2 ? classes.tbodytrPair : classes.tbodytrOdd}>
         <td className={`${classes.tbodytd} ${classes.txtcenter}`}>{i + 1}</td>
-
         <td className={`${classes.tbodytd} ${classes.txtleft}`}>
-          <Link to={`/presupuesto/covid/${ele._id.sec_ejec}`}>
-            {`UE${ele._id.unidad_ejecutora.substring(
-              0,
-              3
-            )} - ${ele._id.unidad_ejecutora
-              .substring(4, ele._id.length)
-              .trim()}`}
-          </Link>
+          {clasificador}
         </td>
-
+        <td
+          className={`${classes.tbodytd} ${classes.txtleft}`}
+        >{`${ele._id.fuente_financ}`}</td>
         <td className={`${classes.tbodytd} ${classes.txtright}`}>
           {decimalFormat(ele.mto_pim)}
         </td>
@@ -114,8 +114,8 @@ const Index = (params) => {
 
   const footer = (
     <tr className={classes.tfoottr}>
-      <th className={`${classes.tfootth} ${classes.txtcenter}`} colSpan="2">
-        TOTAL PLIEGO SAN MARTIN
+      <th className={`${classes.tfootth} ${classes.txtcenter}`} colSpan="3">
+        TOTAL UNIDAD EJECUTORA
       </th>
       <th className={`${classes.tfootth} ${classes.txtright}`}>
         {decimalFormat(pimT)}
