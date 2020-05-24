@@ -2,10 +2,12 @@
 /backend/data
 /backend/node_modules
 /backend/dist
+/backend/.env
 
 # FrontEnd
 /frontend/node_modules
 /frontend/build
+/frontend/.env
 
 # MacoOs
 .DS_Store

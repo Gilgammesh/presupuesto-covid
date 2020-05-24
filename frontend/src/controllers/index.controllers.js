@@ -1,67 +1,69 @@
 import { getRequest } from "../helpers/axios";
 
+const routeApi = process.env.REACT_API_PRESUPUESTO;;
+
 export const getTablaResumen = async (params) => {
-  const url = `http://localhost:4000/getTablaResumen/${params}`;
+  const url = `${routeApi}/getTablaResumen/${params}`;
   const response = await getRequest(url);
   return response;
 };
 
 export const getTablaResumenEjec = async (param1, param2) => {
-  const url = `http://localhost:4000/getTablaResumenEjec/${param1}/${param2}`;
+  const url = `${routeApi}/getTablaResumenEjec/${param1}/${param2}`;
   const response = await getRequest(url);
   return response;
 };
 
 export const getEvolucionMensual = async (params) => {
-  const url = `http://localhost:4000/getEvolucionMensual/${params}`;
+  const url = `${routeApi}/getEvolucionMensual/${params}`;
   const response = await getRequest(url);
   return response;
 };
 
 export const getEvolucionMensualEjec = async (param1, param2) => {
-  const url = `http://localhost:4000/getEvolucionMensualEjec/${param1}/${param2}`;
+  const url = `${routeApi}/getEvolucionMensualEjec/${param1}/${param2}`;
   const response = await getRequest(url);
   return response;
 };
 
 export const getDistribTipoProdProy = async (params) => {
-  const url = `http://localhost:4000/getDistribTipoProdProy/${params}`;
+  const url = `${routeApi}/getDistribTipoProdProy/${params}`;
   const response = await getRequest(url);
   return response;
 };
 
 export const getDistribTipoProdProyEjec = async (param1, param2) => {
-  const url = `http://localhost:4000/getDistribTipoProdProyEjec/${param1}/${param2}`;
+  const url = `${routeApi}/getDistribTipoProdProyEjec/${param1}/${param2}`;
   const response = await getRequest(url);
   return response;
 };
 
 export const getDistribTipoGasto = async (params) => {
-  const url = `http://localhost:4000/getDistribTipoGasto/${params}`;
+  const url = `${routeApi}/getDistribTipoGasto/${params}`;
   const response = await getRequest(url);
   return response;
 };
 
 export const getDistribTipoGastoEjec = async (param1, param2) => {
-  const url = `http://localhost:4000/getDistribTipoGastoEjec/${param1}/${param2}`;
+  const url = `${routeApi}/getDistribTipoGastoEjec/${param1}/${param2}`;
   const response = await getRequest(url);
   return response;
 };
 
 export const getDistribGenerica = async (params) => {
-  const url = `http://localhost:4000/getDistribGenerica/${params}`;
+  const url = `${routeApi}/getDistribGenerica/${params}`;
   const response = await getRequest(url);
   return response;
 };
 
 export const getDistribGenericaEjec = async (param1, param2) => {
-  const url = `http://localhost:4000/getDistribGenericaEjec/${param1}/${param2}`;
+  const url = `${routeApi}/getDistribGenericaEjec/${param1}/${param2}`;
   const response = await getRequest(url);
   return response;
 };
 
 export const processDataPresup = async () => {
-  const url = `http://localhost:4000/processDataPresup`;
+  const url = `${routeApi}/processDataPresup`;
   const response = await getRequest(url);
   return response;
 };
