@@ -1,6 +1,8 @@
 import { getRequest } from "../helpers/axios";
 
-const routeApi = process.env.REACT_API_PRESUPUESTO;;
+const routeApi = process.env.REACT_APP_API_PRESUPUESTO;
+
+console.log(routeApi);
 
 export const getTablaResumen = async (params) => {
   const url = `${routeApi}/getTablaResumen/${params}`;
