@@ -1,8 +1,8 @@
 // Importamos los modelos
-import Presupuesto from "../database/models/presupuesto";
+import Presupuesto from "../../database/models/presupuesto";
 
 // Obtenemos la tabla resumen de ejecución de las Unidades Ejecutoras
-const getTablaResumen = async (request, response) => {
+const getDistribGenericaEjec = async (request, response) => {
   var { ano, ejec } = request.params;
   try {
     const result = await Presupuesto.aggregate([
@@ -11,40 +11,12 @@ const getTablaResumen = async (request, response) => {
           $and: [
             { ano_eje: parseInt(ano, 10) },
             { sec_ejec: parseInt(ejec, 10) },
-            {
-              $or: [
-                {
-                  $and: [
-                    { programa_pptal: { $regex: "^9002" } },
-                    { tipo_prod_proy: { $regex: "^3" } },
-                    { activ_obra_accinv: { $regex: "^5006269" } },
-                  ],
-                },
-                {
-                  $and: [
-                    { programa_pptal: { $regex: "^9002" } },
-                    { tipo_prod_proy: { $regex: "^2" } },
-                    { activ_obra_accinv: { $regex: "^6000050" } },
-                  ],
-                },
-              ],
-            },
           ],
         },
       },
       {
         $group: {
-          _id: {
-            tipo_transaccion: "$tipo_transaccion",
-            generica: "$generica",
-            subgenerica: "$subgenerica",
-            subgenerica_det: "$subgenerica_det",
-            especifica: "$especifica",
-            especifica_det: "$especifica_det",
-            fuente_financ: "$fuente_financ",
-            unidad_ejecutora: "$unidad_ejecutora",
-            sec_ejec: "$sec_ejec",
-          },
+          _id: "$generica",
           mto_pim: { $sum: "$mto_pim" },
           mto_certificado: { $sum: "$mto_certificado" },
           mto_devengado: {
@@ -98,4 +70,4 @@ const getTablaResumen = async (request, response) => {
   }
 };
 
-export default getTablaResumen;
+export default getDistribGenericaEjec;

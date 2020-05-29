@@ -2,8 +2,6 @@ import { getRequest } from "../helpers/axios";
 
 const routeApi = process.env.REACT_APP_API_PRESUPUESTO;
 
-console.log(routeApi);
-
 export const getTablaResumen = async (params) => {
   const url = `${routeApi}/getTablaResumen/${params}`;
   const response = await getRequest(url);
@@ -60,6 +58,66 @@ export const getDistribGenerica = async (params) => {
 
 export const getDistribGenericaEjec = async (param1, param2) => {
   const url = `${routeApi}/getDistribGenericaEjec/${param1}/${param2}`;
+  const response = await getRequest(url);
+  return response;
+};
+
+export const getTablaResumenCovid = async (params) => {
+  const url = `${routeApi}/getTablaResumenCovid/${params}`;
+  const response = await getRequest(url);
+  return response;
+};
+
+export const getTablaResumenEjecCovid = async (param1, param2) => {
+  const url = `${routeApi}/getTablaResumenEjecCovid/${param1}/${param2}`;
+  const response = await getRequest(url);
+  return response;
+};
+
+export const getEvolucionMensualCovid = async (params) => {
+  const url = `${routeApi}/getEvolucionMensualCovid/${params}`;
+  const response = await getRequest(url);
+  return response;
+};
+
+export const getEvolucionMensualEjecCovid = async (param1, param2) => {
+  const url = `${routeApi}/getEvolucionMensualEjecCovid/${param1}/${param2}`;
+  const response = await getRequest(url);
+  return response;
+};
+
+export const getDistribTipoProdProyCovid = async (params) => {
+  const url = `${routeApi}/getDistribTipoProdProyCovid/${params}`;
+  const response = await getRequest(url);
+  return response;
+};
+
+export const getDistribTipoProdProyEjecCovid = async (param1, param2) => {
+  const url = `${routeApi}/getDistribTipoProdProyEjecCovid/${param1}/${param2}`;
+  const response = await getRequest(url);
+  return response;
+};
+
+export const getDistribTipoGastoCovid = async (params) => {
+  const url = `${routeApi}/getDistribTipoGastoCovid/${params}`;
+  const response = await getRequest(url);
+  return response;
+};
+
+export const getDistribTipoGastoEjecCovid = async (param1, param2) => {
+  const url = `${routeApi}/getDistribTipoGastoEjecCovid/${param1}/${param2}`;
+  const response = await getRequest(url);
+  return response;
+};
+
+export const getDistribGenericaCovid = async (params) => {
+  const url = `${routeApi}/getDistribGenericaCovid/${params}`;
+  const response = await getRequest(url);
+  return response;
+};
+
+export const getDistribGenericaEjecCovid = async (param1, param2) => {
+  const url = `${routeApi}/getDistribGenericaEjecCovid/${param1}/${param2}`;
   const response = await getRequest(url);
   return response;
 };

@@ -1,9 +1,12 @@
 import React from "react";
+import { useGlobal } from "reactn";
 import { ResponsivePie } from "@nivo/pie";
 import { decimalFormat, numericFormat } from "../../helpers/format";
 
 const Index = (params) => {
   const { data, scheme } = params;
+
+  const [isCovid] = useGlobal("isCovid");
 
   let total = 0;
   data.map((ele, i) => {
@@ -36,11 +39,11 @@ const Index = (params) => {
       legends={[
         {
           anchor: "bottom-left",
-          direction: "column",
+          direction: isCovid ? "column" : "row",
           translateY: 10,
-          itemWidth: 200,
+          itemWidth: isCovid ? 200 : 30,
           itemHeight: 22,
-          itemTextColor: "#333",
+          itemTextColor: isCovid ? "#333" : "transparent",
           symbolSize: 18,
           symbolShape: "circle",
         },

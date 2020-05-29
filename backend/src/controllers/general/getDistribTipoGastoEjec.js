@@ -1,39 +1,22 @@
 // Importamos los modelos
-import Presupuesto from "../database/models/presupuesto";
+import Presupuesto from "../../database/models/presupuesto";
 
 // Obtenemos la tabla resumen de ejecución de las Unidades Ejecutoras
-const getDistribTipoProdProy = async (request, response) => {
-  var { ano } = request.params;
+const getDistribTipoGastoEjec = async (request, response) => {
+  var { ano, ejec } = request.params;
   try {
     const result = await Presupuesto.aggregate([
       {
         $match: {
           $and: [
             { ano_eje: parseInt(ano, 10) },
-            {
-              $or: [
-                {
-                  $and: [
-                    { programa_pptal: { $regex: "^9002" } },
-                    { tipo_prod_proy: { $regex: "^3" } },
-                    { activ_obra_accinv: { $regex: "^5006269" } },
-                  ],
-                },
-                {
-                  $and: [
-                    { programa_pptal: { $regex: "^9002" } },
-                    { tipo_prod_proy: { $regex: "^2" } },
-                    { activ_obra_accinv: { $regex: "^6000050" } },
-                  ],
-                },
-              ],
-            },
+            { sec_ejec: parseInt(ejec, 10) },
           ],
         },
       },
       {
         $group: {
-          _id: "$generica",
+          _id: "$categoria_gasto",
           mto_pim: { $sum: "$mto_pim" },
           mto_certificado: { $sum: "$mto_certificado" },
           mto_devengado: {
@@ -87,4 +70,4 @@ const getDistribTipoProdProy = async (request, response) => {
   }
 };
 
-export default getDistribTipoProdProy;
+export default getDistribTipoGastoEjec;

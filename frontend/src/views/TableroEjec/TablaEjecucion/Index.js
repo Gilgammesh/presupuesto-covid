@@ -4,7 +4,10 @@ import { Grid, Paper, Typography, Box } from "@material-ui/core";
 import { FiberManualRecord } from "@material-ui/icons";
 import { green, red, amber } from "@material-ui/core/colors";
 import { useStyles } from "./styles";
-import { getTablaResumenEjec } from "../../../controllers/index.controllers";
+import {
+  getTablaResumenEjec,
+  getTablaResumenEjecCovid,
+} from "../../../controllers/index.controllers";
 import Table from "../../../components/Table_/Index";
 
 const Index = () => {
@@ -12,16 +15,24 @@ const Index = () => {
 
   const [ano] = useGlobal("ano");
   const [ejec] = useGlobal("ejec");
+  const [isCovid] = useGlobal("isCovid");
 
   const [data, setData] = useState(null);
   const [isFinish, setIsFinish] = useState(false);
 
   useEffect(() => {
-    getTablaResumenEjec(ano, ejec).then((res) => {
-      setData(res);
-      setIsFinish(true);
-    });
-  }, [ano, ejec]);
+    if (isCovid) {
+      getTablaResumenEjecCovid(ano, ejec).then((res) => {
+        setData(res);
+        setIsFinish(true);
+      });
+    } else {
+      getTablaResumenEjec(ano, ejec).then((res) => {
+        setData(res);
+        setIsFinish(true);
+      });
+    }
+  }, [ano, ejec, isCovid]);
 
   const columns = [
     <span>RANKING</span>,

@@ -1,16 +1,15 @@
 // Importamos los modelos
-import Presupuesto from "../database/models/presupuesto";
+import Presupuesto from "../../database/models/presupuesto";
 
 // Obtenemos la tabla resumen de ejecución de las Unidades Ejecutoras
-const getDistribTipoProdProy = async (request, response) => {
-  var { ano, ejec } = request.params;
+const getDistribGenerica = async (request, response) => {
+  var { ano } = request.params;
   try {
     const result = await Presupuesto.aggregate([
       {
         $match: {
           $and: [
             { ano_eje: parseInt(ano, 10) },
-            { sec_ejec: parseInt(ejec, 10) },
             {
               $or: [
                 {
@@ -88,4 +87,4 @@ const getDistribTipoProdProy = async (request, response) => {
   }
 };
 
-export default getDistribTipoProdProy;
+export default getDistribGenerica;

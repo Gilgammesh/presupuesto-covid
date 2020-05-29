@@ -1,12 +1,15 @@
 import React from "react";
+import { useGlobal } from "reactn";
 import Responsive from "react-responsive";
 import { AppBar, Toolbar, Typography, Hidden } from "@material-ui/core";
 import { useStyles } from "./styles";
-import covid from "../../assets/images/logo_covid.png";
-import grsm from "../../assets/images/logo_grsm.png";
+import covidImg from "../../assets/images/logo_covid.png";
+import grsmImg from "../../assets/images/logo_grsm.png";
 
 const Index = (params) => {
   const { titulo } = params;
+
+  const [isCovid] = useGlobal("isCovid");
 
   const classes = useStyles();
 
@@ -19,7 +22,9 @@ const Index = (params) => {
   return (
     <AppBar className={classes.appBar} position="fixed">
       <Toolbar className={classes.toolBarPrimary}>
-        <img className={classes.imgCovid} src={covid} alt="COVID" />
+        {isCovid && (
+          <img className={classes.imgCovid} src={covidImg} alt="COVID" />
+        )}
         <Desktop>
           <Typography variant="h5" className={classes.title}>
             {titulo}
@@ -36,7 +41,7 @@ const Index = (params) => {
           </Typography>
         </Mobile>
         <Hidden smDown>
-          <img className={classes.imgGrsm} src={grsm} alt="GORESAM" />
+          <img className={classes.imgGrsm} src={grsmImg} alt="GORESAM" />
         </Hidden>
       </Toolbar>
     </AppBar>

@@ -8,7 +8,9 @@ import TablaEjecucion from "./TablaEjecucion/Index";
 import Distribucion from "./Distribucion/Index";
 import EvolucionMensual from "./EvolucionMensual/Index";
 
-const Index = () => {
+const Index = (params) => {
+  const { isCovid } = params;
+
   const classes = useStyles();
 
   const date = new Date();
@@ -16,9 +18,13 @@ const Index = () => {
 
   setGlobal({
     ano: parseInt(year, 10),
+    isCovid: isCovid,
   });
 
-  const titulo = "TABLERO DE PRESUPUESTO COVID";
+  let titulo = "TABLERO DE PRESUPUESTO - GRSM";
+  if (isCovid) {
+    titulo = "TABLERO DE PRESUPUESTO COVID";
+  }
 
   return (
     <div className={classes.root}>

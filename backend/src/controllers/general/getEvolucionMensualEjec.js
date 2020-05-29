@@ -1,8 +1,8 @@
 // Importamos los modelos
-import Presupuesto from "../database/models/presupuesto";
+import Presupuesto from "../../database/models/presupuesto";
 
 // Obtenemos la tabla de evolución de ejecución (devengado) sobre el PIM del Pliego Regional
-const getEvolucionMensual = async (request, response) => {
+const getEvolucionMensualEjec = async (request, response) => {
   var { ano, ejec } = request.params;
   try {
     const result = await Presupuesto.aggregate([
@@ -11,24 +11,6 @@ const getEvolucionMensual = async (request, response) => {
           $and: [
             { ano_eje: parseInt(ano, 10) },
             { sec_ejec: parseInt(ejec, 10) },
-            {
-              $or: [
-                {
-                  $and: [
-                    { programa_pptal: { $regex: "^9002" } },
-                    { tipo_prod_proy: { $regex: "^3" } },
-                    { activ_obra_accinv: { $regex: "^5006269" } },
-                  ],
-                },
-                {
-                  $and: [
-                    { programa_pptal: { $regex: "^9002" } },
-                    { tipo_prod_proy: { $regex: "^2" } },
-                    { activ_obra_accinv: { $regex: "^6000050" } },
-                  ],
-                },
-              ],
-            },
           ],
         },
       },
@@ -60,4 +42,4 @@ const getEvolucionMensual = async (request, response) => {
   }
 };
 
-export default getEvolucionMensual;
+export default getEvolucionMensualEjec;

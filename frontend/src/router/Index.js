@@ -10,14 +10,32 @@ const Index = () => {
     <Router>
       <Switch>
         {/*<Route path="/" exact render={() => <Login />} />*/}
-        <Route path="/presupuesto/covid" exact render={() => <Tablero />} />
+        <Route
+          path="/presupuesto"
+          exact
+          render={() => <Tablero isCovid={false} />}
+        />
+        <Route
+          path="/presupuesto/covid"
+          exact
+          render={() => <Tablero isCovid={true} />}
+        />
+        <Route
+          path="/presupuesto/:ejec"
+          exact
+          render={({ match }) => <TableroEjec match={match} isCovid={false} />}
+        />
         <Route
           path="/presupuesto/covid/:ejec"
           exact
-          render={({ match }) => <TableroEjec match={match} />}
+          render={({ match }) => <TableroEjec match={match} isCovid={true} />}
         />
-        <Route path="/presupuesto/updatedata" exact render={() => <UpdateData />} />
-        <Route path="/login" exact render={() => <Login />} />        
+        <Route
+          path="/presupuesto/updatedata"
+          exact
+          render={() => <UpdateData />}
+        />
+        <Route path="/login" exact render={() => <Login />} />
       </Switch>
     </Router>
   );

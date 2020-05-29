@@ -4,23 +4,34 @@ import { Grid, Paper, Typography, Box } from "@material-ui/core";
 import { FiberManualRecord } from "@material-ui/icons";
 import { green, red, amber } from "@material-ui/core/colors";
 import { useStyles } from "./styles";
-import { getTablaResumen } from "../../../controllers/index.controllers";
+import {
+  getTablaResumen,
+  getTablaResumenCovid,
+} from "../../../controllers/index.controllers";
 import Table from "../../../components/Table/Index";
 
 const Index = () => {
   const classes = useStyles();
 
   const [ano] = useGlobal("ano");
+  const [isCovid] = useGlobal("isCovid");
 
   const [data, setData] = useState(null);
   const [isFinish, setIsFinish] = useState(false);
 
   useEffect(() => {
-    getTablaResumen(ano).then((res) => {          
-      setData(res);
-      setIsFinish(true);
-    });
-  }, [ano]);
+    if (isCovid) {
+      getTablaResumenCovid(ano).then((res) => {
+        setData(res);
+        setIsFinish(true);
+      });
+    } else {
+      getTablaResumen(ano).then((res) => {
+        setData(res);
+        setIsFinish(true);
+      });
+    }
+  }, [ano, isCovid]);
 
   const columns = [
     <span>RANKING</span>,

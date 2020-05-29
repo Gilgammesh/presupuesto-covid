@@ -1,8 +1,8 @@
 // Importamos los modelos
-import Presupuesto from "../database/models/presupuesto";
+import Presupuesto from "../../database/models/presupuesto";
 
 // Obtenemos la tabla resumen de ejecución de las Unidades Ejecutoras
-const getTablaResumen = async (request, response) => {
+const getDistribTipoGasto = async (request, response) => {
   var { ano } = request.params;
   try {
     const result = await Presupuesto.aggregate([
@@ -33,10 +33,7 @@ const getTablaResumen = async (request, response) => {
       },
       {
         $group: {
-          _id: {
-            unidad_ejecutora: "$unidad_ejecutora",
-            sec_ejec: "$sec_ejec",
-          },
+          _id: "$categoria_gasto",
           mto_pim: { $sum: "$mto_pim" },
           mto_certificado: { $sum: "$mto_certificado" },
           mto_devengado: {
@@ -90,4 +87,4 @@ const getTablaResumen = async (request, response) => {
   }
 };
 
-export default getTablaResumen;
+export default getDistribTipoGasto;

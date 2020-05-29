@@ -6,6 +6,9 @@ import {
   getDistribTipoProdProy,
   getDistribGenerica,
   getDistribTipoGasto,
+  getDistribTipoProdProyCovid,
+  getDistribGenericaCovid,
+  getDistribTipoGastoCovid,
 } from "../../../controllers/index.controllers";
 import PieChart from "../../../components/PieChart/Index";
 
@@ -13,6 +16,7 @@ const Index = () => {
   const classes = useStyles();
 
   const [ano] = useGlobal("ano");
+  const [isCovid] = useGlobal("isCovid");
 
   const [data1, setData1] = useState(null);
   const [data2, setData2] = useState(null);
@@ -22,19 +26,34 @@ const Index = () => {
   const [isFinish3, setIsFinish3] = useState(false);
 
   useEffect(() => {
-    getDistribTipoProdProy(ano).then((res) => {
-      setData1(res);
-      setIsFinish1(true);
-    });
-    getDistribGenerica(ano).then((res) => {
-      setData2(res);
-      setIsFinish2(true);
-    });
-    getDistribTipoGasto(ano).then((res) => {
-      setData3(res);
-      setIsFinish3(true);
-    });
-  }, [ano]);
+    if (isCovid) {
+      getDistribTipoProdProyCovid(ano).then((res) => {
+        setData1(res);
+        setIsFinish1(true);
+      });
+      getDistribGenericaCovid(ano).then((res) => {
+        setData2(res);
+        setIsFinish2(true);
+      });
+      getDistribTipoGastoCovid(ano).then((res) => {
+        setData3(res);
+        setIsFinish3(true);
+      });
+    } else {
+      getDistribTipoProdProy(ano).then((res) => {
+        setData1(res);
+        setIsFinish1(true);
+      });
+      getDistribGenerica(ano).then((res) => {
+        setData2(res);
+        setIsFinish2(true);
+      });
+      getDistribTipoGasto(ano).then((res) => {
+        setData3(res);
+        setIsFinish3(true);
+      });
+    }
+  }, [ano, isCovid]);
 
   let data1_ = null;
   if (isFinish1) {

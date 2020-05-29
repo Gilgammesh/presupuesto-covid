@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useGlobal } from "reactn";
 import { Grid, Paper, Typography, Box } from "@material-ui/core";
 import { useStyles } from "./styles";
-import { getEvolucionMensualEjec } from "../../../controllers/index.controllers";
+import {
+  getEvolucionMensualEjec,
+  getEvolucionMensualEjecCovid,
+} from "../../../controllers/index.controllers";
 import LineChart from "../../../components/LineChart/Index";
 
 const Index = () => {
@@ -10,6 +13,7 @@ const Index = () => {
 
   const [ano] = useGlobal("ano");
   const [ejec] = useGlobal("ejec");
+  const [isCovid] = useGlobal("isCovid");
 
   const [data, setData] = useState(null);
   const [isFinish, setIsFinish] = useState(false);
@@ -18,11 +22,18 @@ const Index = () => {
   const month = date.getMonth();
 
   useEffect(() => {
-    getEvolucionMensualEjec(ano, ejec).then((res) => {
-      setData(res);
-      setIsFinish(true);
-    });
-  }, [ano, ejec]);
+    if (isCovid) {
+      getEvolucionMensualEjecCovid(ano, ejec).then((res) => {
+        setData(res);
+        setIsFinish(true);
+      });
+    } else {
+      getEvolucionMensualEjec(ano, ejec).then((res) => {
+        setData(res);
+        setIsFinish(true);
+      });
+    }
+  }, [ano, ejec, isCovid]);
 
   let data_ = null;
   if (isFinish) {
