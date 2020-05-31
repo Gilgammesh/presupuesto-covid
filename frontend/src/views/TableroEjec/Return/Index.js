@@ -1,4 +1,5 @@
 import React from "react";
+import { useGlobal } from "reactn";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -19,6 +20,8 @@ const ColorButton = withStyles((theme) => ({
 const Index = () => {
   const classes = useStyles();
 
+  const [isCovid] = useGlobal("isCovid");
+
   return (
     <ColorButton
       variant="contained"
@@ -27,7 +30,7 @@ const Index = () => {
       className={classes.button}
       startIcon={<KeyboardReturnIcon />}
       component={Link}
-      to="/presupuesto/covid"
+      to={isCovid ? "/presupuesto/covid" : "/presupuesto"}
     >
       Regresar
     </ColorButton>

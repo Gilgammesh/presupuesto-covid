@@ -34,6 +34,9 @@ const Index = () => {
     }
   }, [ano, ejec, isCovid]);
 
+  const date = new Date();
+  const month = date.getMonth();
+
   const columns = [
     <span>RANKING</span>,
     <span>CLASIFICADOR</span>,
@@ -94,7 +97,7 @@ const Index = () => {
                   style={{ color: green[500], fontSize: 24 }}
                 />
                 <Typography variant="body2" className={classes.descLeyenda}>
-                  Ejecución mayor a 75%
+                  {`Ejecución mayor a ${(month + 1) * 8}%`}
                 </Typography>
               </Box>
               <Box className={classes.boxLeyenda}>
@@ -102,13 +105,13 @@ const Index = () => {
                   style={{ color: amber[500], fontSize: 24 }}
                 />
                 <Typography variant="body2" className={classes.descLeyenda}>
-                  Ejecución entre 50% a 75%
+                  {`Ejecución entre ${(month + 1) * 6}% a ${(month + 1) * 8}%`}
                 </Typography>
               </Box>
               <Box className={classes.boxLeyenda}>
                 <FiberManualRecord style={{ color: red[500], fontSize: 24 }} />
                 <Typography variant="body2" className={classes.descLeyenda}>
-                  Ejecución menor a 50%
+                  {`Ejecución menor a ${(month + 1) * 6}%`}
                 </Typography>
               </Box>
             </Box>

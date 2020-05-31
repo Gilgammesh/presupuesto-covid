@@ -14,6 +14,9 @@ const Index = (params) => {
 
   const classes = useStyles();
 
+  const date = new Date();
+  const month = date.getMonth();
+
   const header = columns.map((ele, i) => {
     return (
       <th
@@ -32,17 +35,20 @@ const Index = (params) => {
   let devenT = 0;
   const rows = data.map((ele, i) => {
     let semaforo = null;
-    if (ele.ejecucion > 0.75) {
+    if (ele.ejecucion > (month + 1) * 0.08) {
       semaforo = (
         <FiberManualRecord style={{ color: green[500], fontSize: 22 }} />
       );
     }
-    if (ele.ejecucion >= 0.5 && ele.ejecucion <= 0.75) {
+    if (
+      ele.ejecucion >= (month + 1) * 0.06 &&
+      ele.ejecucion <= (month + 1) * 0.08
+    ) {
       semaforo = (
         <FiberManualRecord style={{ color: amber[500], fontSize: 22 }} />
       );
     }
-    if (ele.ejecucion < 0.5) {
+    if (ele.ejecucion < (month + 1) * 0.06) {
       semaforo = (
         <FiberManualRecord style={{ color: red[500], fontSize: 22 }} />
       );
@@ -60,7 +66,13 @@ const Index = (params) => {
       <tr key={i} className={i % 2 ? classes.tbodytrPair : classes.tbodytrOdd}>
         <td className={`${classes.tbodytd} ${classes.txtcenter}`}>{i + 1}</td>
         <td className={`${classes.tbodytd} ${classes.txtleft}`}>
-          <Link to={isCovid ? `/presupuesto/covid/${ele._id.sec_ejec}` : `/presupuesto/${ele._id.sec_ejec}`}>
+          <Link
+            to={
+              isCovid
+                ? `/presupuesto/covid/${ele._id.sec_ejec}`
+                : `/presupuesto/${ele._id.sec_ejec}`
+            }
+          >
             {`UE${ele._id.unidad_ejecutora.substring(
               0,
               3
