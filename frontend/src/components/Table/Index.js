@@ -1,4 +1,5 @@
 import React from "react";
+import { useGlobal } from "reactn";
 import { Link } from "react-router-dom";
 import { Box } from "@material-ui/core";
 import { FiberManualRecord } from "@material-ui/icons";
@@ -8,6 +9,8 @@ import { decimalFormat } from "../../helpers/format";
 
 const Index = (params) => {
   const { data, columns } = params;
+
+  const [isCovid] = useGlobal("isCovid");
 
   const classes = useStyles();
 
@@ -56,9 +59,8 @@ const Index = (params) => {
     return (
       <tr key={i} className={i % 2 ? classes.tbodytrPair : classes.tbodytrOdd}>
         <td className={`${classes.tbodytd} ${classes.txtcenter}`}>{i + 1}</td>
-
         <td className={`${classes.tbodytd} ${classes.txtleft}`}>
-          <Link to={`/presupuesto/covid/${ele._id.sec_ejec}`}>
+          <Link to={isCovid ? `/presupuesto/covid/${ele._id.sec_ejec}` : `/presupuesto/${ele._id.sec_ejec}`}>
             {`UE${ele._id.unidad_ejecutora.substring(
               0,
               3
@@ -67,7 +69,6 @@ const Index = (params) => {
               .trim()}`}
           </Link>
         </td>
-
         <td className={`${classes.tbodytd} ${classes.txtright}`}>
           {decimalFormat(ele.mto_pim)}
         </td>
